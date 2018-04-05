@@ -9,9 +9,9 @@ endif
 " Set up Pathogen and load all packages in ~/.vim/bundle
 execute pathogen#infect()
 
-filetype plugin indent on
+"filetype plugin indent on
 
-syntax on        " Turn on syntax highlighting
+"syntax on        " Turn on syntax highlighting
 hi! link SignColumn LineNr
 
 "colorscheme mayansmoke
@@ -23,6 +23,7 @@ if &columns >= 88
     set number
 endif
 
+set nojoinspaces   " Insert one space (not two) after joined lines
 set expandtab      " Insert tabs as spaces
 set tabstop=4
 set shiftwidth=4   " Indentation to use for auto-indent/un-indent
