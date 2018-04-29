@@ -46,3 +46,7 @@
 	path = .vim/bundle/vim-sensible
 	url = https://github.com/tpope/vim-sensible.git
 	branch = master
+[submodule ".vim/bundle/ale"]
+	path = .vim/bundle/ale
+	url = https://github.com/w0rp/ale.git
+	branch = master
