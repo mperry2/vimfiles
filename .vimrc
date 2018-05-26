@@ -6,35 +6,24 @@ if has('win32') || has('win64')
     set runtimepath^=~/.vim
 endif
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Packages
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Set up Pathogen and load all packages in ~/.vim/bundle
 execute pathogen#infect()
 
-"filetype plugin indent on
 
-"syntax on        " Turn on syntax highlighting
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors and fonts
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 hi! link SignColumn LineNr
 
 "colorscheme mayansmoke
 colorscheme default
 set background=dark  " I always work on dark terminals
-
-" Show line numbers if terminal width is at least 88 characters
-if &columns >= 88
-    set number
-endif
-
-set nojoinspaces   " Insert one space (not two) after joined lines
-set expandtab      " Insert tabs as spaces
-set tabstop=4
-set shiftwidth=4   " Indentation to use for auto-indent/un-indent
-
-set hlsearch
-
-" Statusline that matches the default when 'ruler' is set but includes
-" %{fugitive#statusline()}
-set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
 
 
 if has("gui_running")
@@ -52,12 +41,45 @@ if has("gui_running")
     endif
 endif
 
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Statusline
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Statusline that matches the default when 'ruler' is set but includes
+" %{fugitive#statusline()}
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" vimrc management
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 " Source .vimrc or .gvimrc if it's written from Vim. This will let any changes
 " take effect immediately.
 augroup myvimrc
     au!
     au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
 augroup END
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" General settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set nojoinspaces   " Insert one space (not two) after joined lines
+set expandtab      " Insert tabs as spaces
+set tabstop=4
+set shiftwidth=4   " Indentation to use for auto-indent/un-indent
+
+set hlsearch
+
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
+
+" Show line numbers if terminal width is at least 88 characters
+if &columns >= 88
+    set number
+endif
 
 
 " Use F2 to toggle paste mode
@@ -73,27 +95,29 @@ nnoremap <F11> :set nolist! list?<CR>
 nnoremap <F12> :set nonumber! number?<CR>
 
 
-
 "set foldmethod=syntax
 "set foldlevelstart=1
 
 
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Makefile settings
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Use tabs at 8 chars in makefiles
 au FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
 
 
-
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " JavaScript settings
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 au BufNewFile,BufReadPost *.json setlocal filetype=javascript.json
 
 
-
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Perl settings
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 au BufRead,BufNewFile *.tt setfiletype html
 
 au FileType perl compiler perl
@@ -137,10 +161,10 @@ au Filetype perl nnoremap <silent> <localleader>D :.!perl -MO=Deparse 2>/dev/nul
 au Filetype perl vnoremap <silent> <localleader>D :!perl -MO=Deparse 2>/dev/null<CR>
 
 
-
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Nagios settings
-"
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 au BufNewFile,BufRead /usr/local/nagios/etc/*.cfg,/*etc/nagios/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set filetype=nagios
 
 au FileType nagios setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
