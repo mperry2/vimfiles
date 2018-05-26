@@ -78,16 +78,6 @@ nnoremap <F12> :set nonumber! number?<CR>
 "set foldlevelstart=1
 
 
-" Syntastic settings
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
 
 " Use tabs at 8 chars in makefiles
 au FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
