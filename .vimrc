@@ -108,13 +108,6 @@ au FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" JavaScript settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-au BufNewFile,BufReadPost *.json setlocal filetype=javascript.json
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Perl settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
