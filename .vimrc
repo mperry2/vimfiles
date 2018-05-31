@@ -52,18 +52,6 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" vimrc management
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Source .vimrc or .gvimrc if it's written from Vim. This will let any changes
-" take effect immediately.
-augroup myvimrc
-    au!
-    au BufWritePost .vimrc,_vimrc,vimrc,.gvimrc,_gvimrc,gvimrc so $MYVIMRC | if has('gui_running') | so $MYGVIMRC | endif
-augroup END
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
