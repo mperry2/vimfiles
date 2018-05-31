@@ -1,9 +1,8 @@
-set nocompatible
 scriptencoding utf-8
 
 " Make Windows use ~/.vim too. I don't want to use _vimfiles
 if has('win32') || has('win64')
-    set runtimepath^=~/.vim
+    set runtimepath^=~\.vim
 endif
 
 
@@ -19,9 +18,16 @@ execute pathogen#infect()
 " Colors and fonts
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-hi! link SignColumn LineNr
+function! MyHighlights() abort
+    highlight! link SignColumn LineNr
+endfunction
 
-"colorscheme mayansmoke
+augroup MyColors
+    autocmd!
+    autocmd ColorScheme * call MyHighlights()
+augroup END
+
+
 colorscheme default
 set background=dark  " I always work on dark terminals
 
@@ -36,8 +42,8 @@ if has("gui_running")
 
     if has("win32")
         " Maximize the initial Vim window under MS Windows
-        au GUIEnter * simalt ~x
-        au GUIEnter * set number
+        autocmd GUIEnter * simalt ~x
+        autocmd GUIEnter * set number
     endif
 endif
 
@@ -55,11 +61,14 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 " General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-set nojoinspaces   " Insert one space (not two) after joined lines
-set expandtab      " Insert tabs as spaces
-set tabstop=4
+set softtabstop=4
 set shiftwidth=4   " Indentation to use for auto-indent/un-indent
+set expandtab
 
+set nojoinspaces   " Insert one space (not two) after joined lines
+
+set ignorecase
+set smartcase
 set hlsearch
 
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
@@ -93,21 +102,21 @@ nnoremap <F12> :set nonumber! number?<CR>
 
 " Makefile settings
 augroup makefile
-    au!
-    au FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
+    autocmd!
+    autocmd FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
 augroup END
 
 
 
 " Perl settings
 augroup perl
-    au!
-    au BufRead,BufNewFile *.tt setfiletype html
-    au FileType perl compiler perl
+    autocmd!
+    autocmd BufRead,BufNewFile *.tt setfiletype html
+    autocmd FileType perl compiler perl
 
     " Deparse code
-    au Filetype perl nnoremap <silent> <localleader>D :.!perl -MO=Deparse 2>/dev/null<CR>
-    au Filetype perl vnoremap <silent> <localleader>D :!perl -MO=Deparse 2>/dev/null<CR>
+    autocmd Filetype perl nnoremap <silent> <localleader>D :.!perl -MO=Deparse 2>/dev/null<CR>
+    autocmd Filetype perl vnoremap <silent> <localleader>D :!perl -MO=Deparse 2>/dev/null<CR>
 augroup END
 "let perl_include_pod   = 1   " Include pod.vim syntax file with perl.vim
 let perl_extended_vars = 1   " Highlight complex expressions such as @{[$x, $y]}
@@ -122,7 +131,7 @@ command! -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy -q
 
 " Run :PerlTidy on entire buffer and return cursor to the approximate
 " original position.
-function! DoPerlTidy()
+function! DoPerlTidy() abort
     let l = line(".")
     let c = col(".")
     :PerlTidy
@@ -130,19 +139,19 @@ function! DoPerlTidy()
 endfun
 
 augroup perl
-    au Filetype perl nnoremap <localleader>pt :call DoPerlTidy()<CR>
-    au Filetype perl vnoremap <localleader>pt :PerlTidy<CR>
-    "au FileType perl nnoremap <localleader>pt :%!perltidy -q<CR>
-    "au FileType perl vnoremap <localleader>pt :!perltidy -q<CR>
+    autocmd Filetype perl nnoremap <localleader>pt :call DoPerlTidy()<CR>
+    autocmd Filetype perl vnoremap <localleader>pt :PerlTidy<CR>
+    "autocmd FileType perl nnoremap <localleader>pt :%!perltidy -q<CR>
+    "autocmd FileType perl vnoremap <localleader>pt :!perltidy -q<CR>
 augroup END
 
 " The following function will allow you to set your cursor over a Perl module
 " name in the file that you are currently editing and type \pm to open the
 " corresponding source file in a new buffer. 
 augroup perl
-    au FileType perl nnoremap <localleader>pm :call LoadPerlModule()<CR>
+    autocmd FileType perl nnoremap <localleader>pm :call LoadPerlModule()<CR>
 augroup END
-function! LoadPerlModule()
+function! LoadPerlModule() abort
     execute 'e `perldoc -l ' . expand("<cWORD>") . '`'
 endfunction
 
@@ -150,9 +159,9 @@ endfunction
 
 " Nagios settings
 augroup nagios
-    au!
-    au BufNewFile,BufRead /usr/local/nagios/etc/*.cfg,/*etc/nagios/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set filetype=nagios
-    au FileType nagios setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-    au FileType nagios setlocal autowrite
-    au FileType nagios compiler nagios
+    autocmd!
+    autocmd BufNewFile,BufRead /usr/local/nagios/etc/*.cfg,/*etc/nagios/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set filetype=nagios
+    autocmd FileType nagios setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+    autocmd FileType nagios setlocal autowrite
+    autocmd FileType nagios compiler nagios
 augroup END
