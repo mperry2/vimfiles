@@ -108,6 +108,14 @@ augroup END
 
 
 
+" Python settings
+augroup python
+    autocmd!
+    autocmd FileType python let b:vimpipe_command="python3"
+augroup END
+
+
+
 " Perl settings
 augroup perl
     autocmd!
