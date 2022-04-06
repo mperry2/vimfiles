@@ -1,17 +1,77 @@
-scriptencoding utf-8
+" Normally this if-block is not needed, because `:set nocp` is done
+" automatically when .vimrc is found. However, this might be useful
+" when you execute `vim -u .vimrc` from the command line.
+if &compatible
+  " `:set nocp` has many side effects. Therefore this should be done
+  " only when 'compatible' is set.
+  set nocompatible
+endif
 
 " Make Windows use ~/.vim too. I don't want to use _vimfiles
 if has('win32') || has('win64')
-    set runtimepath^=~\.vim
+  set packpath^=~/.vim
+  set runtimepath^=~/.vim
 endif
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Packages
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Install minpac if it's not found
+if empty(glob('~/.vim/pack/minpac/opt/minpac'))
+  let s:minpac_first_install = 1
+  silent !echo "Vim package 'minpac' not found. Installing it from GitHub."
+  silent !git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+endif
 
-" Set up Pathogen and load all packages in ~/.vim/bundle
-execute pathogen#infect()
+function! PackInit() abort
+  packadd minpac
+
+  call minpac#init()
+  call minpac#add('k-takata/minpac', {'type': 'opt'})
+
+  call minpac#add('editorconfig/editorconfig-vim')
+  call minpac#add('hashivim/vim-terraform')
+  call minpac#add('pearofducks/ansible-vim')
+  call minpac#add('tpope/vim-eunuch')
+  call minpac#add('tpope/vim-fugitive')
+  call minpac#add('tpope/vim-sensible')
+endfunction
+
+
+" Define user commands for updating/cleaning the plugins.
+" Each of them calls PackInit() to load minpac and register
+" the information of plugins, then performs the task.
+command! PackUpdate call PackInit() | call minpac#update()
+command! PackClean  call PackInit() | call minpac#clean()
+command! PackStatus packadd minpac | call minpac#status()
+
+" Update all packages if minpac had to be installed
+if exists('s:minpac_first_install')
+  call PackInit()
+  call minpac#update()
+endif
+
+
+" Open a terminal window at the directory of a specified plugin. If you
+" execute `:PackOpenDir minpac`, it will open a terminal window at
+" `~/.vim/pack/minpac/opt/minpac` (or the directory where minpac is
+" installed).
+function! PackList(...)
+  call PackInit()
+  return join(sort(keys(minpac#getpluglist())), "\n")
+endfunction
+
+command! -nargs=1 -complete=custom,PackList
+      \ PackOpenDir call PackInit() | call term_start(&shell,
+      \    {'cwd': minpac#getpluginfo(<q-args>).dir,
+      \     'term_finish': 'close'})
+
+
+
+" editorconfig
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+
+scriptencoding utf-8
+
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
