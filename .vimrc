@@ -79,12 +79,12 @@ scriptencoding utf-8
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 function! MyHighlights() abort
-    highlight! link SignColumn LineNr
+  highlight! link SignColumn LineNr
 endfunction
 
 augroup MyColors
-    autocmd!
-    autocmd ColorScheme * call MyHighlights()
+  autocmd!
+  autocmd ColorScheme * call MyHighlights()
 augroup END
 
 
@@ -93,18 +93,18 @@ set background=dark  " I always work on dark terminals
 
 
 if has("gui_running")
-    "set guioptions-=m         " Remove menu bar
-    "set guioptions-=T         " Remove toolbar
-    "set guioptions-=r         " Remove right-hand scroll bar
-    set guicursor=a:blinkon0  " Disable blinking cursor
-    set guifont=DejaVu_Sans_Mono:h12,Lucida_Console:h12,Fixedsys:h9
-    colorscheme xoria256
+  "set guioptions-=m         " Remove menu bar
+  "set guioptions-=T         " Remove toolbar
+  "set guioptions-=r         " Remove right-hand scroll bar
+  set guicursor=a:blinkon0  " Disable blinking cursor
+  set guifont=DejaVu_Sans_Mono:h12,Lucida_Console:h12,Fixedsys:h9
+  colorscheme xoria256
 
-    if has("win32")
-        " Maximize the initial Vim window under MS Windows
-        autocmd GUIEnter * simalt ~x
-        autocmd GUIEnter * set number
-    endif
+  if has("win32")
+    " Maximize the initial Vim window under MS Windows
+    autocmd GUIEnter * simalt ~x
+    autocmd GUIEnter * set number
+  endif
 endif
 
 
@@ -137,7 +137,7 @@ set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
 
 " Show line numbers if terminal width is at least 88 characters
 if &columns >= 88
-    set number
+  set number
 endif
 
 
@@ -164,29 +164,29 @@ nnoremap <F12> :set nonumber! number?<CR>
 
 " Makefile settings
 augroup makefile
-    autocmd!
-    autocmd FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
+  autocmd!
+  autocmd FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
 augroup END
 
 
 
 " Python settings
 augroup python
-    autocmd!
-    autocmd FileType python let b:vimpipe_command="python3"
+  autocmd!
+  autocmd FileType python let b:vimpipe_command="python3"
 augroup END
 
 
 
 " Perl settings
 augroup perl
-    autocmd!
-    autocmd BufRead,BufNewFile *.tt setfiletype html
-    autocmd FileType perl compiler perl
+  autocmd!
+  autocmd BufRead,BufNewFile *.tt setfiletype html
+  autocmd FileType perl compiler perl
 
-    " Deparse code
-    autocmd Filetype perl nnoremap <silent> <localleader>D :.!perl -MO=Deparse 2>/dev/null<CR>
-    autocmd Filetype perl vnoremap <silent> <localleader>D :!perl -MO=Deparse 2>/dev/null<CR>
+  " Deparse code
+  autocmd Filetype perl nnoremap <silent> <localleader>D :.!perl -MO=Deparse 2>/dev/null<CR>
+  autocmd Filetype perl vnoremap <silent> <localleader>D :!perl -MO=Deparse 2>/dev/null<CR>
 augroup END
 "let perl_include_pod   = 1   " Include pod.vim syntax file with perl.vim
 let perl_extended_vars = 1   " Highlight complex expressions such as @{[$x, $y]}
@@ -202,36 +202,36 @@ command! -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy -q
 " Run :PerlTidy on entire buffer and return cursor to the approximate
 " original position.
 function! DoPerlTidy() abort
-    let l = line(".")
-    let c = col(".")
-    :PerlTidy
-    call cursor(l, c)
+  let l = line(".")
+  let c = col(".")
+  :PerlTidy
+  call cursor(l, c)
 endfun
 
 augroup perl
-    autocmd Filetype perl nnoremap <localleader>pt :call DoPerlTidy()<CR>
-    autocmd Filetype perl vnoremap <localleader>pt :PerlTidy<CR>
-    "autocmd FileType perl nnoremap <localleader>pt :%!perltidy -q<CR>
-    "autocmd FileType perl vnoremap <localleader>pt :!perltidy -q<CR>
+  autocmd Filetype perl nnoremap <localleader>pt :call DoPerlTidy()<CR>
+  autocmd Filetype perl vnoremap <localleader>pt :PerlTidy<CR>
+  "autocmd FileType perl nnoremap <localleader>pt :%!perltidy -q<CR>
+  "autocmd FileType perl vnoremap <localleader>pt :!perltidy -q<CR>
 augroup END
 
 " The following function will allow you to set your cursor over a Perl module
 " name in the file that you are currently editing and type \pm to open the
 " corresponding source file in a new buffer. 
 augroup perl
-    autocmd FileType perl nnoremap <localleader>pm :call LoadPerlModule()<CR>
+  autocmd FileType perl nnoremap <localleader>pm :call LoadPerlModule()<CR>
 augroup END
 function! LoadPerlModule() abort
-    execute 'e `perldoc -l ' . expand("<cWORD>") . '`'
+  execute 'e `perldoc -l ' . expand("<cWORD>") . '`'
 endfunction
 
 
 
 " Nagios settings
 augroup nagios
-    autocmd!
-    autocmd BufNewFile,BufRead /usr/local/nagios/etc/*.cfg,/*etc/nagios/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set filetype=nagios
-    autocmd FileType nagios setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-    autocmd FileType nagios setlocal autowrite
-    autocmd FileType nagios compiler nagios
+  autocmd!
+  autocmd BufNewFile,BufRead /usr/local/nagios/etc/*.cfg,/*etc/nagios/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set filetype=nagios
+  autocmd FileType nagios setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
+  autocmd FileType nagios setlocal autowrite
+  autocmd FileType nagios compiler nagios
 augroup END
