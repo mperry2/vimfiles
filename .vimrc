@@ -29,6 +29,7 @@ function! PackInit() abort
 
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('hashivim/vim-terraform')
+  call minpac#add('krisajenkins/vim-pipe')
   call minpac#add('pearofducks/ansible-vim')
   call minpac#add('tpope/vim-eunuch')
   call minpac#add('tpope/vim-fugitive')
