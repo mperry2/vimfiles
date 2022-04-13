@@ -46,10 +46,16 @@ command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean  call PackInit() | call minpac#clean()
 command! PackStatus packadd minpac | call minpac#status()
 
+function! MinpacInitNotice()
+  call minpac#progress#add_msg('', '')
+  call minpac#progress#add_msg('', 'Minpac has been installed automatically, and it has updated your plugins.')
+  call minpac#progress#add_msg('', 'Please restart Vim to use the new configuration.')
+endfunction
+
 " Update all packages if minpac had to be installed
 if exists('s:minpac_first_install')
   call PackInit()
-  call minpac#update()
+  call minpac#update('', {'do': 'call MinpacInitNotice() | delfunction MinpacInitNotice'})
 endif
 
 
