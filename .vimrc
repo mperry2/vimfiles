@@ -124,6 +124,8 @@ endif
 " General settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+set modeline
+
 set softtabstop=4
 set shiftwidth=4   " Indentation to use for auto-indent/un-indent
 set expandtab
