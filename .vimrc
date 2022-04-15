@@ -16,9 +16,14 @@ endif
 
 " Install minpac if it's not found
 if empty(glob('~/.vim/pack/minpac/opt/minpac'))
-  let s:minpac_first_install = 1
-  silent !echo "Vim package 'minpac' not found. Installing it from GitHub."
+  silent !echo "Vim plugin 'minpac' not found. Installing it from GitHub."
   silent !git clone https://github.com/k-takata/minpac.git ~/.vim/pack/minpac/opt/minpac
+  if v:shell_error == 0
+    let s:minpac_first_install = 1
+    silent !echo "Installation of minpac is complete."
+  else
+    silent !echo "Error installing minpac."
+  endif
 endif
 
 function! PackInit() abort
