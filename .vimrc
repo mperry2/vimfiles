@@ -178,14 +178,6 @@ nnoremap <F12> :set nonumber! number?<CR>
 " Language-specific settings
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-" Makefile settings
-augroup makefile
-  autocmd!
-  autocmd FileType make setlocal noexpandtab tabstop=8 shiftwidth=8
-augroup END
-
-
-
 " Python settings
 augroup python
   autocmd!
