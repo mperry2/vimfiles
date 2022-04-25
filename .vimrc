@@ -190,48 +190,7 @@ augroup END
 augroup perl
   autocmd!
   autocmd BufRead,BufNewFile *.tt setfiletype html
-  autocmd FileType perl compiler perl
-
-  " Deparse code
-  autocmd Filetype perl nnoremap <silent> <localleader>D :.!perl -MO=Deparse 2>/dev/null<CR>
-  autocmd Filetype perl vnoremap <silent> <localleader>D :!perl -MO=Deparse 2>/dev/null<CR>
 augroup END
-"let perl_include_pod   = 1   " Include pod.vim syntax file with perl.vim
-let perl_extended_vars = 1   " Highlight complex expressions such as @{[$x, $y]}
-let perl_sync_dist     = 250 " Use more context for highlighting
-let perl_fold=1
-let perl_nofold_packages=1
-let perl_nofold_subs=1
-
-" Define :PerlTidy command to run perltidy on a visual selection or
-" the entire buffer.
-command! -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy -q
-
-" Run :PerlTidy on entire buffer and return cursor to the approximate
-" original position.
-function! DoPerlTidy() abort
-  let l = line(".")
-  let c = col(".")
-  :PerlTidy
-  call cursor(l, c)
-endfun
-
-augroup perl
-  autocmd Filetype perl nnoremap <localleader>pt :call DoPerlTidy()<CR>
-  autocmd Filetype perl vnoremap <localleader>pt :PerlTidy<CR>
-  "autocmd FileType perl nnoremap <localleader>pt :%!perltidy -q<CR>
-  "autocmd FileType perl vnoremap <localleader>pt :!perltidy -q<CR>
-augroup END
-
-" The following function will allow you to set your cursor over a Perl module
-" name in the file that you are currently editing and type \pm to open the
-" corresponding source file in a new buffer. 
-augroup perl
-  autocmd FileType perl nnoremap <localleader>pm :call LoadPerlModule()<CR>
-augroup END
-function! LoadPerlModule() abort
-  execute 'e `perldoc -l ' . expand("<cWORD>") . '`'
-endfunction
 
 
 
