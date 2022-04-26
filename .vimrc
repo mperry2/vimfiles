@@ -139,8 +139,8 @@ endif
 
 set modeline
 
-set softtabstop=4
-set shiftwidth=4   " Indentation to use for auto-indent/un-indent
+set softtabstop=2
+set shiftwidth=2   " Indentation to use for auto-indent/un-indent
 set expandtab
 
 set nojoinspaces   " Insert one space (not two) after joined lines
