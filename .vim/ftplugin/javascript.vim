@@ -1,1 +1,1 @@
-let b:vimpipe_command="python -m json.tool"
+let b:vimpipe_command="python3 -m json.tool"
