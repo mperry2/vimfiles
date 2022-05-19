@@ -1,1 +1,1 @@
-let b:vimpipe_command="bash"
+let b:vimpipe_command='bash'

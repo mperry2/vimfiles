@@ -1,4 +1,4 @@
-let b:vimpipe_command="perl"
+let b:vimpipe_command='perl'
 
 "let perl_include_pod   = 1   " Include pod.vim syntax file with perl.vim
 let perl_extended_vars = 1   " Highlight complex expressions such as @{[$x, $y]}
@@ -18,8 +18,8 @@ command! -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy -q
 " Run :PerlTidy on entire buffer and return cursor to the approximate
 " original position.
 function! DoPerlTidy() abort
-  let l = line(".")
-  let c = col(".")
+  let l = line('.')
+  let c = col('.')
   :PerlTidy
   call cursor(l, c)
 endfun
@@ -34,7 +34,7 @@ vnoremap <localleader>pt :PerlTidy<CR>
 " corresponding source file in a new buffer.
 nnoremap <localleader>pm :call LoadPerlModule()<CR>
 function! LoadPerlModule() abort
-  execute 'e `perldoc -l ' . expand("<cWORD>") . '`'
+  execute 'e `perldoc -l ' . expand('<cWORD>') . '`'
 endfunction
 
 compiler perl

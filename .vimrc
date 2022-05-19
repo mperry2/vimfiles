@@ -106,7 +106,7 @@ colorscheme default
 set background=dark  " I always work on dark terminals
 
 
-if has("gui_running")
+if has('gui_running')
   "set guioptions-=m         " Remove menu bar
   "set guioptions-=T         " Remove toolbar
   "set guioptions-=r         " Remove right-hand scroll bar
@@ -114,7 +114,7 @@ if has("gui_running")
   set guifont=DejaVu_Sans_Mono:h12,Lucida_Console:h12,Fixedsys:h9
   colorscheme xoria256
 
-  if has("win32")
+  if has('win32')
     " Maximize the initial Vim window under MS Windows
     augroup ms_windows
       autocmd!
