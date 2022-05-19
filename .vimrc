@@ -116,8 +116,11 @@ if has("gui_running")
 
   if has("win32")
     " Maximize the initial Vim window under MS Windows
-    autocmd GUIEnter * simalt ~x
-    autocmd GUIEnter * set number
+    augroup ms_windows
+      autocmd!
+      autocmd GUIEnter * simalt ~x
+      autocmd GUIEnter * set number
+    augroup END
   endif
 endif
 
