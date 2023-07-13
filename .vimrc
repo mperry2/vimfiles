@@ -9,6 +9,18 @@ if &compatible
   set nocompatible
 endif
 
+" Check if $HOME/.viminfo is writable (if present) and warn if it's not. This
+" file can change ownership to root if the user runs `sudo vim`. The sudoedit
+" command should be used instead to avoid this problem.
+if !empty(glob('~/.viminfo'))
+  if !filewritable(expand('~/.viminfo'))
+    echo "WARNING: ~/.viminfo is not writeable\n"
+          \ "Exit the editor and fix the ownership of the file. This problem can occur\n"
+          \ "when a user runs 'sudo vim' to edit a file as root. The 'sudoedit' command\n"
+          \ "should be used in such cases to avoid this problem.\n"
+  endif
+endif
+
 " Make Windows use ~/.vim too. I don't want to use _vimfiles
 if has('win32') || has('win64')
   set packpath^=~/.vim
