@@ -1,3 +1,5 @@
+" vint: -ProhibitSetNoCompatible
+
 " Normally this if-block is not needed, because `:set nocp` is done
 " automatically when .vimrc is found. However, this might be useful
 " when you execute `vim -u .vimrc` from the command line.
