@@ -52,6 +52,7 @@ function! PackInit() abort
   call minpac#add('hashivim/vim-terraform')
   call minpac#add('krisajenkins/vim-pipe')
   call minpac#add('pearofducks/ansible-vim')
+  call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-eunuch')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
