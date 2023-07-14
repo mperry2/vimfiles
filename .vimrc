@@ -60,6 +60,7 @@ function! PackInit() abort
   call minpac#add('tpope/vim-sensible')
   call minpac#add('tpope/vim-speeddating')
   call minpac#add('tpope/vim-surround')
+  call minpac#add('tpope/vim-unimpaired')
 endfunction
 
 
