@@ -58,6 +58,7 @@ function! PackInit() abort
   call minpac#add('tpope/vim-eunuch')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
+  call minpac#add('tpope/vim-speeddating')
 endfunction
 
 
