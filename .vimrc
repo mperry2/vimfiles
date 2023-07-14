@@ -54,6 +54,7 @@ function! PackInit() abort
   call minpac#add('pearofducks/ansible-vim')
   call minpac#add('tpope/vim-characterize')
   call minpac#add('tpope/vim-commentary')
+  call minpac#add('tpope/vim-endwise')
   call minpac#add('tpope/vim-eunuch')
   call minpac#add('tpope/vim-fugitive')
   call minpac#add('tpope/vim-sensible')
