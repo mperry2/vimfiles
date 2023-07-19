@@ -202,14 +202,3 @@ vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
 
 "set foldmethod=syntax
 "set foldlevelstart=1
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Language-specific settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Perl settings
-augroup perl
-  autocmd!
-  autocmd BufRead,BufNewFile *.tt setfiletype html
-augroup END
