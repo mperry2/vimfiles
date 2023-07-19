@@ -213,14 +213,3 @@ augroup perl
   autocmd!
   autocmd BufRead,BufNewFile *.tt setfiletype html
 augroup END
-
-
-
-" Ansible
-let g:ansible_unindent_after_newline = 1
-let g:ansible_extra_keywords_highlight = 1
-augroup ansible
-  autocmd!
-  au BufRead,BufNewFile */playbooks/*.yml,*/ansible/*.yml set filetype=yaml.ansible
-  au BufRead,BufNewFile */playbooks/*.yml,*/ansible/*.yml let b:ale_yaml_yamllint_options='-c '.$HOME.'/.config/yamllint/config.ansible.yml'
-augroup END
