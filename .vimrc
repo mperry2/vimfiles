@@ -50,8 +50,8 @@ function! PackInit() abort
   call minpac#add('dense-analysis/ale')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('hashivim/vim-terraform')
-  call minpac#add('krisajenkins/vim-pipe')
   call minpac#add('pearofducks/ansible-vim')
+  call minpac#add('thinca/vim-quickrun')
   call minpac#add('tpope/vim-characterize')
   call minpac#add('tpope/vim-commentary')
   call minpac#add('tpope/vim-endwise')
@@ -102,7 +102,11 @@ command! -nargs=1 -complete=custom,PackList
 
 
 " editorconfig
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+let g:EditorConfig_exclude_patterns = [
+      \ 'fugitive://.*',
+      \ 'quickrun://.*',
+      \ 'scp://.*'
+      \ ]
 
 
 scriptencoding utf-8
@@ -192,6 +196,10 @@ nnoremap <F11> :set nolist! list?<CR>
 
 " Use F12 to toggle line numbering
 nnoremap <F12> :set nonumber! number?<CR>
+
+" Mappings for QuickRun
+nnoremap <silent> <Leader>r :QuickRun -mode n<CR>
+vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
 
 
 "set foldmethod=syntax
