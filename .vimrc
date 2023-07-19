@@ -216,16 +216,6 @@ augroup END
 
 
 
-" Nagios settings
-augroup nagios
-  autocmd!
-  autocmd BufNewFile,BufRead /usr/local/nagios/etc/*.cfg,/*etc/nagios/*.cfg,*sample-config/template-object/*.cfg{,.in},/var/lib/nagios/objects.cache set filetype=nagios
-  autocmd FileType nagios setlocal tabstop=8 softtabstop=8 shiftwidth=8 noexpandtab
-  autocmd FileType nagios setlocal autowrite
-  autocmd FileType nagios compiler nagios
-augroup END
-
-
 " Ansible
 let g:ansible_unindent_after_newline = 1
 let g:ansible_extra_keywords_highlight = 1
