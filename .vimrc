@@ -155,10 +155,8 @@ endif
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 " Statusline that matches the default when 'ruler' is set but includes
-" %{fugitive#statusline()}
-if exists('g:loaded_fugitive')
-  set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
-endif
+" %{FugitiveStatusline()}
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
