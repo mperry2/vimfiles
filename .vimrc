@@ -100,41 +100,38 @@ command! -nargs=1 -complete=custom,PackList
       \     'term_finish': 'close'})
 
 
-
-" editorconfig
-let g:EditorConfig_exclude_patterns = [
-      \ 'fugitive://.*',
-      \ 'quickrun://.*',
-      \ 'scp://.*'
-      \ ]
-
-
 scriptencoding utf-8
 
+set modeline
+set softtabstop=2
+set shiftwidth=2
+set expandtab
+set nojoinspaces
+set ignorecase
+set smartcase
+set hlsearch
+set updatetime=100
+set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
 
+" Show line numbers if terminal width is at least 88 characters
+if &columns >= 88
+  set number
+endif
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors and fonts
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Statusline that matches the default when 'ruler' is set but includes
+" %{FugitiveStatusline()}
+set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
-function! MyHighlights() abort
-  highlight! link SignColumn LineNr
-endfunction
 
 augroup MyColors
   autocmd!
-  autocmd ColorScheme * call MyHighlights()
+  autocmd ColorScheme * highlight! link SignColumn LineNr
 augroup END
 
-
 colorscheme default
-set background=dark  " I always work on dark terminals
-
+set background=dark
 
 if has('gui_running')
-  "set guioptions-=m         " Remove menu bar
-  "set guioptions-=T         " Remove toolbar
-  "set guioptions-=r         " Remove right-hand scroll bar
   set guicursor=a:blinkon0  " Disable blinking cursor
   set guifont=DejaVu_Sans_Mono:h12,Lucida_Console:h12,Fixedsys:h9
   colorscheme xoria256
@@ -150,55 +147,12 @@ if has('gui_running')
 endif
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Statusline
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-" Statusline that matches the default when 'ruler' is set but includes
-" %{FugitiveStatusline()}
-set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" General settings
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-set modeline
-
-set softtabstop=2
-set shiftwidth=2   " Indentation to use for auto-indent/un-indent
-set expandtab
-
-set nojoinspaces   " Insert one space (not two) after joined lines
-
-set ignorecase
-set smartcase
-set hlsearch
-
-set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
-
-" Show line numbers if terminal width is at least 88 characters
-if &columns >= 88
-  set number
-endif
-
-
-" Use F2 to toggle paste mode
-set pastetoggle=<F2>
-
-" Toggle Tagbar window
-nmap <F8> :TagbarToggle<CR>
-
-" Use F11 to toggle display of unprintable characters
-nnoremap <F11> :set nolist! list?<CR>
-
-" Use F12 to toggle line numbering
-nnoremap <F12> :set nonumber! number?<CR>
+let g:EditorConfig_exclude_patterns = [
+      \ 'fugitive://.*',
+      \ 'quickrun://.*',
+      \ 'scp://.*'
+      \ ]
 
 " Mappings for QuickRun
 nnoremap <silent> <Leader>r :QuickRun -mode n<CR>
 vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
-
-
-"set foldmethod=syntax
-"set foldlevelstart=1
