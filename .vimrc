@@ -111,6 +111,7 @@ set ignorecase
 set smartcase
 set hlsearch
 set updatetime=100
+set spelllang=en_us
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
 
 " Show line numbers if terminal width is at least 88 characters
