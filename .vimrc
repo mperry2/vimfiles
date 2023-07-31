@@ -51,6 +51,7 @@ function! PackInit() abort
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('hashivim/vim-terraform')
   call minpac#add('pearofducks/ansible-vim')
+  call minpac#add('sirver/ultisnips')
   call minpac#add('thinca/vim-quickrun')
   call minpac#add('tpope/vim-characterize')
   call minpac#add('tpope/vim-commentary')
