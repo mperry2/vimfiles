@@ -1,0 +1,269 @@
+# Snippet to add a variable
+snippet {{ "variable"
+{{ $1 }}
+endsnippet
+
+
+# Snippet for creating a play
+# Only works if typed in column 1
+snippet "^play" "Ansible play" r
+---
+- name: ${1:Play description}
+  hosts: ${2:hostgroup}
+  gather_facts: ${3:true}
+  become: ${4:false}
+
+  roles:
+    - ${5:role_name}
+
+  tasks:
+endsnippet
+
+
+# Snippets for frequently used Ansible modules
+snippet apt: "apt module"
+- name: ${1:Task description}
+  ansible.builtin.apt:
+    # name: ${2}
+    # state: ${3:present}
+    # update_cache: ${4:false}
+endsnippet
+
+snippet apt_key: "apt_key module"
+- name: ${1:Task description}
+  ansible.builtin.apt_key:
+    url: ${2}
+    state: ${3:present}
+    id: ${4}
+endsnippet
+
+snippet apt_repository: "apt_repository module"
+- name: ${1:Task description}
+  ansible.builtin.apt_repository:
+    repo: ${2}
+    state: ${3:present}
+    # filename: ${4}
+    # codename: ${5}
+endsnippet
+
+snippet assert: "assert module"
+- name: ${1:Task description}
+  ansible.builtin.assert:
+    that: ${2}
+    # quiet: ${3:false}
+    # fail_msg: ${4}
+    # success_msg: ${5}
+endsnippet
+
+snippet command: "command module"
+- name: ${1:Task description}
+  ansible.builtin.command:
+    cmd: ${2}
+    # chdir: ${3}
+    # creates: ${4}
+    # removes: ${5}
+    # stdin: ${6}
+endsnippet
+
+snippet copy: "copy module"
+- name: ${1:Task description}
+  ansible.builtin.copy:
+    src: ${2}
+    dest: ${3}
+    owner: ${4}
+    group: ${5}
+    mode: ${6}
+endsnippet
+
+snippet debug: "debug module"
+- name: ${1:Task description}
+  ansible.builtin.debug:
+    # msg: ${2:Hello world!}
+    # var: ${3}
+    # verbosity: ${4:0}
+endsnippet
+
+snippet file: "file module"
+- name: ${1:Task description}
+  ansible.builtin.file:
+    path: ${2}
+    state: ${3:file}
+    # owner: ${4}
+    # group: ${5}
+    # mode: ${6}
+endsnippet
+
+snippet find: "find module"
+- name: ${1:Task description}
+  ansible.builtin.find:
+    paths: ${2}
+    # age: ${3}
+    # size: ${4}
+    # file_type: ${5:file}
+    # recurse: ${6:false}
+endsnippet
+
+snippet getent: "getent module"
+- name: ${1:Task description}
+  ansible.builtin.getent:
+    database: ${2}
+    key: ${3}
+    # fail_key: ${4:true}
+endsnippet
+
+snippet include_role: "include_role module"
+- name: ${1:Task description}
+  ansible.builtin.include_role:
+    name: ${2}
+endsnippet
+
+snippet include_tasks: "include_tasks module"
+- name: ${1:Task description}
+  ansible.builtin.include_tasks:
+    file: ${2}
+endsnippet
+
+snippet include_vars: "include_vars module"
+- name: ${1:Task description}
+  ansible.builtin.include_vars:
+    file: ${2}
+endsnippet
+
+snippet lineinfile: "lineinfile module"
+- name: ${1:Task description}
+  ansible.builtin.lineinfile:
+    path: ${2}
+    # regexp: ${3}
+    # backrefs: ${4:false}
+    # line: ${5}
+    # group: ${6}
+    # owner: ${7}
+    # mode: ${8}
+endsnippet
+
+snippet meta: "meta module"
+- name: ${1:Task description}
+  ansible.builtin.meta: ${2:command}
+endsnippet
+
+snippet package: "package module"
+- name: ${1:Task description}
+  ansible.builtin.package:
+    name: ${2}
+    state: ${3}
+    # use: ${4:auto}
+endsnippet
+
+snippet package_facts: "package_facts module"
+- name: ${1:Task description}
+  ansible.builtin.package_facts:
+    # manager: ${2:auto}
+    # strategy: ${3:first}
+endsnippet
+
+snippet rpm_key: "rpm_key module"
+- name: ${1:Task description}
+  ansible.builtin.rpm_key:
+    key: ${2}
+    # state: ${3:present}
+    # validate_certs: ${4:true}
+endsnippet
+
+snippet service: "service module"
+- name: ${1:Task description}
+  ansible.builtin.service:
+    name: ${2}
+    state: ${3}
+    # enabled: ${4}
+endsnippet
+
+snippet service_facts: "service_facts module"
+- name: ${1:Task description}
+  ansible.builtin.service_facts:
+endsnippet
+
+snippet set_fact: "set_fact module"
+- name: ${1:Task description}
+  ansible.builtin.set_fact:
+    ${2:fact_name}: ${3:fact_value}
+endsnippet
+
+snippet setup: "setup module"
+- name: ${1:Task description}
+  ansible.builtin.setup:
+    # gather_subset: ${2:all}
+endsnippet
+
+snippet shell: "shell module"
+- name: ${1:Task description}
+  ansible.builtin.shell:
+    cmd: ${2}
+    # chdir: ${3}
+    # creates: ${4}
+    # removes: ${5}
+    # stdin: ${6}
+endsnippet
+
+snippet slurp: "slurp module"
+- name: ${1:Task description}
+  ansible.builtin.slurp:
+    src: ${2}
+endsnippet
+
+snippet stat: "stat module"
+- name: ${1:Task description}
+  ansible.builtin.stat:
+    path: ${2}
+endsnippet
+
+snippet systemd: "systemd module"
+- name: ${1:Task description}
+  ansible.builtin.systemd:
+    name: ${2}
+    state: ${3}
+    enabled: ${4}
+endsnippet
+
+snippet template: "template module"
+- name: ${1:Task description}
+  ansible.builtin.template:
+    src: ${2}
+    dest: ${3}
+    owner: ${4}
+    group: ${5}
+    mode: ${6}
+endsnippet
+
+snippet user: "user module"
+- name: ${1:Task description}
+  ansible.builtin.user:
+    name: ${2}
+    # group: ${3}
+    # groups: ${4}
+    # append: ${5:false}
+    # comment: ${6}
+    # create_home: ${7:true}
+    # home: ${8}
+    # password: ${9}
+    # state: ${10:present}
+endsnippet
+
+snippet yum: "yum module"
+- name: ${1:Task description}
+  ansible.builtin.yum:
+    name: ${2}
+    state: ${3}
+    # update_cache: ${4:false}
+    # enablerepo: ${5}
+    # disablerepo: ${6}
+    # download_only: ${7:false}
+endsnippet
+
+snippet yum_repository: "yum_repository module"
+- name: ${1:Task description}
+  ansible.builtin.yum_repository:
+    name: ${2}
+    # description: ${3}
+    # baseurl: ${4}
+    # enabled: ${5:true}
+endsnippet
