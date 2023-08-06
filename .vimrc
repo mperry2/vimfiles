@@ -71,7 +71,7 @@ endfunction
 " the information of plugins, then performs the task.
 command! PackUpdate call PackInit() | call minpac#update()
 command! PackClean  call PackInit() | call minpac#clean()
-command! PackStatus packadd minpac | call minpac#status()
+command! PackStatus packadd minpac  | call minpac#status()
 
 function! MinpacInitNotice()
   call minpac#progress#add_msg('', '')
