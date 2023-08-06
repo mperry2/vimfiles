@@ -155,6 +155,10 @@ let g:EditorConfig_exclude_patterns = [
       \ 'scp://.*'
       \ ]
 
-" Mappings for QuickRun
+
+" QuickRun configuration
 nnoremap <silent> <Leader>r :QuickRun -mode n<CR>
 vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
+
+let g:quickrun_config = get(g:, 'quickrun_config', {})
+let g:quickrun_config.python = { 'command': 'python3' }
