@@ -54,6 +54,7 @@ function! PackInit() abort
   call minpac#add('micarmst/vim-spellsync')
   call minpac#add('pearofducks/ansible-vim')
   call minpac#add('preservim/tagbar')
+  call minpac#add('rickhowe/wrapwidth')
   call minpac#add('sirver/ultisnips')
   call minpac#add('thinca/vim-quickrun')
   call minpac#add('tpope/vim-characterize')
