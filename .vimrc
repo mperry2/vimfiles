@@ -50,6 +50,7 @@ function! PackInit() abort
   call minpac#add('dense-analysis/ale')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('hashivim/vim-terraform')
+  call minpac#add('ludovicchabant/vim-gutentags')
   call minpac#add('micarmst/vim-spellsync')
   call minpac#add('pearofducks/ansible-vim')
   call minpac#add('sirver/ultisnips')
