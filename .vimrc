@@ -171,3 +171,9 @@ vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
 
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config.python = { 'command': 'python3' }
+
+
+" Source local changes
+if filereadable(expand('~/.vimrc-local'))
+  source ~/.vimrc-local
+endif
