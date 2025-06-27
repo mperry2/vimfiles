@@ -158,6 +158,13 @@ if has('gui_running')
 endif
 
 
+" Close location list when quitting a buffer
+augroup CloseLoclistWindowGroup
+  autocmd!
+  autocmd QuitPre * if empty(&buftype) | lclose | endif
+augroup END
+
+
 let g:EditorConfig_exclude_patterns = [
       \ 'fugitive://.*',
       \ 'quickrun://.*',
