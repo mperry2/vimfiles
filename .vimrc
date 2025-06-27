@@ -165,6 +165,10 @@ augroup CloseLoclistWindowGroup
 augroup END
 
 
+" ALE plugin settings
+let g:ale_open_list = 1
+
+
 let g:EditorConfig_exclude_patterns = [
       \ 'fugitive://.*',
       \ 'quickrun://.*',
