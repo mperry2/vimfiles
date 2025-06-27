@@ -158,7 +158,22 @@ if has('gui_running')
 endif
 
 
-" Close location list when quitting a buffer
+" Enable filetype detection when run from sudoedit
+" from https://github.com/tpope/vim-eunuch/commit/4087a5463ff1d9e779dace6fddbdad10e072c1ea
+if $SUDO_COMMAND =~# '^sudoedit '
+  let files = split($SUDO_COMMAND, ' ')[1:-1]
+  if len(files) ==# argc()
+    for i in range(argc())
+      execute 'autocmd BufEnter' fnameescape(argv(i))
+            \ 'if empty(&filetype) || &filetype ==# "conf"'
+            \ '|doautocmd filetypedetect BufReadPost '.fnameescape(files[i])
+            \ '|endif'
+    endfor
+  endif
+endif
+
+
+" Close location list when quitting its associated buffer
 augroup CloseLoclistWindowGroup
   autocmd!
   autocmd QuitPre * if empty(&buftype) | lclose | endif
