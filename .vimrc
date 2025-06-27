@@ -180,6 +180,10 @@ let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config.python = { 'command': 'python3' }
 
 
+" ALE plugin settings
+let g:ale_open_list = 1
+
+
 " Source local changes
 if filereadable(expand('~/.vimrc-local'))
   source ~/.vimrc-local
