@@ -120,6 +120,7 @@ set hlsearch
 set updatetime=100
 set spelllang=en_us
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
+set splitright
 
 " Show line numbers if terminal width is at least 88 characters
 if &columns >= 88
@@ -189,10 +190,11 @@ let g:EditorConfig_exclude_patterns = [
       \ ]
 
 
-" QuickRun configuration
+" QuickRun plugin settings
 nnoremap <silent> <Leader>r :QuickRun -mode n<CR>
 vnoremap <silent> <Leader>r :QuickRun -mode v<CR>
-
+" No-op command to prevent accidental running of QuickRun
+command! QuickRu :
 let g:quickrun_config = get(g:, 'quickrun_config', {})
 let g:quickrun_config.python = { 'command': 'python3' }
 
