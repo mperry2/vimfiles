@@ -1,5 +1,6 @@
 setlocal foldmethod=syntax
-execute feedkeys('zR')
+setlocal foldlevel=99
+setlocal nofoldenable
 
 if executable('jq')
   setlocal formatprg=jq\ .
