@@ -129,7 +129,7 @@ endif
 
 " Statusline that matches the default when 'ruler' is set but includes
 " %{FugitiveStatusline()}
-set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline=%<%f\ %h%m%r%{exists('g:loaded_fugitive')?fugitive#statusline():''}%=%-14.(%l,%c%V%)\ %P
 
 
 if (has('termguicolors'))
