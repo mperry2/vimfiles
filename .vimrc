@@ -132,6 +132,12 @@ endif
 set statusline=%<%f\ %h%m%r%{FugitiveStatusline()}%=%-14.(%l,%c%V%)\ %P
 
 
+if (has('termguicolors'))
+  if &term =~# 'direct' || $COLORTERM ==? 'truecolor' || $COLORTERM ==? '24bit'
+    set termguicolors
+  endif
+endif
+
 augroup MyColors
   autocmd!
   autocmd ColorScheme * highlight! link SignColumn LineNr
