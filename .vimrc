@@ -182,6 +182,31 @@ augroup CloseLoclistWindowGroup
 augroup END
 
 
+" Open :help in a vertical split instead of horizontal, but only if the
+" current window is wide enough to accomodate it.
+augroup vertical_help
+  au!
+  au WinNew * au BufEnter *.txt ++once
+        \ if &bt ==? 'help' && winwidth(winnr('#')) >= 180 |
+        \   exe 'wincmd ' . (&splitright ? 'L' : 'H') |
+        \   vert resize 80 |
+        \ endif
+augroup END
+
+" Open :help as the only window if a second window exists but is empty. Useful
+" for running :help after starting Vim without needing to maximize the window.
+augroup maximize_vim_help
+  autocmd!
+  autocmd WinNew * autocmd BufEnter *.txt ++once
+        \ if &buftype ==? 'help'
+        \   && winnr('$') ==# 2
+        \   && getbufvar(bufnr('#'), 'buftype') ==# ''
+        \   && getbufline(bufnr('#'),1,'$') ==# ['']
+        \ | only
+        \ | endif
+augroup END
+
+
 " ALE plugin settings
 let g:ale_open_list = 1
 
