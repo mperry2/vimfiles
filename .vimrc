@@ -50,6 +50,7 @@ function! PackInit() abort
   call minpac#add('airblade/vim-gitgutter')
   call minpac#add('bfrg/vim-jq')
   call minpac#add('bfrg/vim-jqplay')
+  call minpac#add('bluz71/vim-nightfly-colors')
   call minpac#add('dense-analysis/ale')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('hashivim/vim-terraform')
@@ -140,18 +141,7 @@ if (has('termguicolors'))
   endif
 endif
 
-augroup MyColors
-  autocmd!
-  autocmd ColorScheme * highlight! link SignColumn LineNr
-augroup END
-
-colorscheme default
-set background=dark
-highlight SpellBad term=reverse ctermfg=0 ctermbg=9 gui=undercurl guisp=Red
-highlight SpellCap term=reverse ctermfg=0 ctermbg=12 gui=undercurl guisp=Blue
-highlight SpellRare term=reverse ctermfg=0 ctermbg=13 gui=undercurl guisp=Magenta
-highlight SpellLocal term=underline ctermfg=0 ctermbg=14 gui=undercurl guisp=Cyan
-
+silent! colorscheme nightfly
 
 if has('gui_running')
   set guicursor=a:blinkon0  " Disable blinking cursor
