@@ -50,6 +50,7 @@ function! PackInit() abort
   call minpac#add('airblade/vim-gitgutter')
   call minpac#add('bfrg/vim-jq')
   call minpac#add('bfrg/vim-jqplay')
+  call minpac#add('bluz71/vim-mistfly-statusline')
   call minpac#add('bluz71/vim-nightfly-colors')
   call minpac#add('dense-analysis/ale')
   call minpac#add('editorconfig/editorconfig-vim')
@@ -186,6 +187,11 @@ let g:EditorConfig_exclude_patterns = [
       \ 'quickrun://.*',
       \ 'scp://.*'
       \ ]
+
+
+" Mistfly Statusline plugin settings
+set noshowmode
+let g:mistflyWithSearchCount = v:true
 
 
 " QuickRun plugin settings
