@@ -48,6 +48,8 @@ function! PackInit() abort
 
   call minpac#add('Einenlum/yaml-revealer')
   call minpac#add('airblade/vim-gitgutter')
+  call minpac#add('bfrg/vim-jq')
+  call minpac#add('bfrg/vim-jqplay')
   call minpac#add('dense-analysis/ale')
   call minpac#add('editorconfig/editorconfig-vim')
   call minpac#add('hashivim/vim-terraform')
