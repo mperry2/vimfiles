@@ -222,6 +222,15 @@ let g:EditorConfig_exclude_patterns = [
 " Mistfly Statusline plugin settings
 set noshowmode
 let g:mistflyWithSearchCount = v:true
+let g:mistflyWithSpellStatus = v:true
+let g:mistflyWithIndentStatus = v:true
+let g:mistflyExcludePatterns = [
+      \ 'fugitive://.*',
+      \ 'jq-filter://.*',
+      \ 'jq-output://.*',
+      \ 'quickrun://.*',
+      \ 'scp://.*',
+      \ ]
 
 
 " QuickRun plugin settings
