@@ -123,6 +123,7 @@ set smartcase
 set hlsearch
 set updatetime=100
 set spelllang=en_us
+set fillchars=vert:│,fold:-,eob:~,lastline:@
 set listchars=tab:>\ ,trail:-,extends:>,precedes:<,nbsp:+,eol:¬
 set splitright
 
@@ -143,6 +144,12 @@ if (has('termguicolors'))
 endif
 
 silent! colorscheme nightfly
+" Adjust background for vertical split fillchar
+augroup MyColors
+  autocmd!
+  autocmd ColorScheme nightfly highlight! VertSplit term=reverse guifg=#454c5f guibg=bg
+augroup END
+
 
 if has('gui_running')
   set guicursor=a:blinkon0  " Disable blinking cursor
