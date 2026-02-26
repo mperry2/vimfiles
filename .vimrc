@@ -207,6 +207,39 @@ augroup maximize_vim_help
 augroup END
 
 
+" Open :Man in a vertical split instead of horizontal, but only if the current
+" window is wide enough to accommodate it.
+augroup vertical_manpage
+  autocmd!
+  autocmd WinNew * autocmd BufEnter * ++once
+        \ if &buftype ==? 'man' && winwidth(winnr('#')) >= 180 |
+        \     execute 'wincmd ' . (&splitright ? 'L' : 'H') |
+        \     vertical resize 80 |
+        \ endif
+augroup END
+
+" Refresh and reflow the man page text if its window is resized.
+augroup ManPageRefreshOnResize
+  autocmd!
+  " Refresh and maintain position on window move/resize
+  autocmd WinResized,WinEnter * if &ft == 'man' |
+        \ let $MANWIDTH = (winwidth(0) > 120 ? 120 : winwidth(0)) |
+        \ let save_view = winsaveview() |
+        \ silent! call dist#man#GetPage('horizontal', '', expand('%:t:r')) |
+        \ call winrestview(save_view) |
+        \ endif
+augroup END
+
+
+" Map gO to :HelpToc specifically for help and man pages
+packadd helptoc
+augroup HelpTocMappings
+  autocmd!
+  autocmd FileType help nnoremap <buffer> gO :HelpToc<CR>
+  autocmd FileType man  nnoremap <buffer> gO :HelpToc<CR>
+augroup END
+
+
 " context.vim plugin settings
 let g:context_highlight_tag = '<hide>'
 
